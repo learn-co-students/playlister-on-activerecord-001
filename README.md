@@ -1,6 +1,7 @@
 ---
 languages: ruby
 tags: activerecord, playlister, orm
+resources: 2
 ---
 
 # Playlister on ActiveRecord
@@ -35,3 +36,16 @@ There are a number of ways to approach solving this lab; the following steps are
 3. You'll probably get some errors now that are related to the database. This would probably be a good time to write your migrations. Four of the files for these migrations have been created for you in `db/migrations`, but you'll need to add a fifth to make all of the specs pass. Notice that there is a very strong naming convention at play here. In the file `01_create_songs.rb`, there is a migration defined called `CreateSongs`.
 
 4. Once you've set up your migrations, it's time to create the associations between your models. Using the ActiveRecord macros you have available to you, set up the relationships so that the tests pass. Here's a hint: you'll need to set up a couple of `:through` associations.
+
+### Write More Tests
+
+1. Once you've managed to make the test suite pass, write your own tests. Within these tests, you should exercise working with different ways of creating associations.
+
+### Bonus
+
+1. Write a `db:seed` rake task.
+2. Integrate your SiteGenerator within this version of Playlister.
+
+## Resources
+* [Ruby Docs](http://www.ruby-doc.org/) - [OpenStruct](http://www.ruby-doc.org/stdlib-2.1.0/libdoc/ostruct/rdoc/OpenStruct.html)
+* [Rails Guides](http://guides.rubyonrails.org/) - [Active Record Basics](http://guides.rubyonrails.org/association_basics.html)
