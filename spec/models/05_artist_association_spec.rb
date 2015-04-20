@@ -1,15 +1,11 @@
+describe 'Artist Associations' do
 
-describe 'Artist' do
   before do
     @prince = Artist.create(name: "Prince")
   end
 
   after do 
     clean_database
-  end
-
-  it 'has a name' do
-    expect(Artist.find_by(name: "Prince")).to eq(@prince)
   end
 
   it 'can build a song' do
@@ -48,4 +44,5 @@ describe 'Artist' do
 
     expect(@prince.genres).to include(genre)
   end
+
 end
