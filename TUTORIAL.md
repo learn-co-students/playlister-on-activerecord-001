@@ -4,7 +4,7 @@
 
 The objective of this lab is to gain familiarity with setting up models and associations using ActiveRecord migrations and macros like `belongs_to` and `has_many`.
 
-In addition to the basic `belongs_to` and `has_many` associations, this domain model will require a `has_many through`. 
+In addition to the basic `belongs_to` and `has_many` associations, this domain model will require a `has_many through`.
 
 ## Steps
 
@@ -50,7 +50,7 @@ Run `rake db:migrate` and you'll see the following in terminal:
 ==  AddArtistToSongs: migrated (0.0009s) ======================================
 ```
 
-So we've seen that the migration ran, but when we run `rspec` we have the same number of failures. In order to make this association complete, we need to tell our `Song` and `Artist` models about each other using ActiveRecord macros! 
+So we've seen that the migration ran, but when we run `rspec` we have the same number of failures. In order to make this association complete, we need to tell our `Song` and `Artist` models about each other using ActiveRecord macros!
 
 In the `Song` class:
 
@@ -64,7 +64,7 @@ Now when we run `rspec`, we can see that all of the tests dealing with the assoc
 
 Let's take note that by adding the `belongs_to` and `has_many` macros, a whole bunch of new methods were added to our models. Looking at the tests, we can see some of this new functionality:
 
-1. a song can be created with an artist as an attribute (there's an `artist=` method): 
+1. a song can be created with an artist as an attribute (there's an `artist=` method):
 
   ```ruby
   artist = Artist.create(name: "The Beatles")
@@ -75,10 +75,10 @@ Let's take note that by adding the `belongs_to` and `has_many` macros, a whole b
 
   ```ruby
   @prince = Artist.create(name: "Prince")
-  
+
   song = @prince.songs.build(name: "A Song By Prince") # song not persisted yet
   song.save # now the song is persisted along with its association with its artist
-  
+
   song = @prince.songs.create(name: "A Different Song By Prince") # the song is built and saved in one step
   ```
 3. an artist can add many songs at the same time
@@ -134,7 +134,7 @@ The `Song` model, now that it belongs to both an artist and a genre, has become 
 
 So how will we complete the connection and have artists know about their genres and genres know about their artists? They will have to go **through** the `songs` table!
 
-An artist is only associated with a genre when it has a song that belongs to that genre, and a genre is only associated with an artist through a song that belongs to that artist. Let's think about it like this: as an artist, I can't claim to be a jazz musician if I've never written or performed any jazz songs! The artist becomes associated with the jazz genre as soon as he or she writes or performs a jazz song. This is a `has_many through` relationship. 
+An artist is only associated with a genre when it has a song that belongs to that genre, and a genre is only associated with an artist through a song that belongs to that artist. Let's think about it like this: as an artist, I can't claim to be a jazz musician if I've never written or performed any jazz songs! The artist becomes associated with the jazz genre as soon as he or she writes or performs a jazz song. This is a `has_many through` relationship.
 
 Since we already have `has_many :songs` in our `Artist` and `Genre` models, we can simply add one more macro to each of these models:
 
