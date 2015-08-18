@@ -1,4 +1,5 @@
 describe 'Artist Associations' do
+
   before do
     @prince = Artist.create(name: "Prince")
   end
