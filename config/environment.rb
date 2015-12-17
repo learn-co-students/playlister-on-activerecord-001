@@ -3,6 +3,7 @@ Bundler.require
 
 require 'active_record'
 require 'rake'
+require 'tk'
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
@@ -30,4 +31,19 @@ def drop_db
   DB.tables.each do |table|
     DB.execute("DROP TABLE #{table}")
   end
+end
+
+def seed_db
+Artist.delete_all 
+Song.delete_all 
+Genre.delete_all 
+genres = Genre.create([{name: "Rock"}, {name: "Pop"}, {name: "Rap"}])
+artists = Artist.create([{name: "Michael Smith"}, {name: "Dolphin"}, {name: "Max Fry"}])
+artists.each do |artist|
+5.times do |i|
+  song = Song.create(name: "song#{i}", genre: genres[rand(0..genres.size-1)], artist: artist)
+  song.save
+  end
+ end
+
 end

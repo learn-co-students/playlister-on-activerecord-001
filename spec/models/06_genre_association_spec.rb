@@ -1,4 +1,4 @@
-describe 'Genre Associations' do
+  describe 'Genre Associations' do
   before do
     @genre = Genre.create(name: "Hip Hop")
   end
@@ -23,5 +23,20 @@ describe 'Genre Associations' do
 
     expect(@genre.artists).to include(artist)
   end
+
+  it 'has many artists' do
+    artist1 = Artist.create(name: "Artist 1")
+    artist2 = Artist.create(name: "Artist 2")
+    song1 = Song.create(name: "Song1", genre: @genre, artist: artist1)
+    song2 = Song.create(name: "Song2", genre: @genre, artist: artist2)
+    expect(@genre.artists.all.size) == 2
+  end
+
+  it 'knows about its songs' do
+    song = Song.create(name: "Milk", genre: @genre)
+    expect(@genre.songs).to include(song)
+  end
+
   
 end
+
