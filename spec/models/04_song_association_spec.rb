@@ -11,7 +11,6 @@ describe 'Song Associations' do
     genre = Genre.create(name: "Rock")
     @song.genre = genre
     @song.save
-
     expect(Song.find_by(name: "Forever").genre).to eq(genre)
   end
 
