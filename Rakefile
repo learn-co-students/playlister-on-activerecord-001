@@ -1,3 +1,5 @@
+require 'sinatra/activerecord/rake'
+
 task :environment do
   ENV["PLAYLISTER_ENV"] ||= "development"
   require_relative 'config/environment'
@@ -17,7 +19,7 @@ namespace :db do
   
   desc 'Create a db/schema.rb file that is portable against any DB supported by AR'
   task :schema do
-    require 'active_record/schema_dumper'
+    require 'active_record'
     filename = "db/schema.rb"
     File.open(filename, "w:utf-8") do |file|
       ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
