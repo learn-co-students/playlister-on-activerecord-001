@@ -1,6 +1,8 @@
+require 'pry'
 describe 'Song Associations' do
   before do
     @song = Song.create(name: "Forever")
+    #binding.pry()
   end
 
   after do 
@@ -33,6 +35,8 @@ describe 'Song Associations' do
   it 'can build genres' do
     genre = @song.build_genre(name: "Rap")
     @song.save
+
+    binding.pry()
 
     expect(Song.where(name: "Forever").first.genre).to eq(genre)
     expect(Genre.where(name: "Rap").first.songs).to include(@song)
